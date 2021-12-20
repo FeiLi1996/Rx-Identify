@@ -1,0 +1,3 @@
+-add option for shape and color for manual input
+-manage the data for shape and color
+-able to retrieve multipler results

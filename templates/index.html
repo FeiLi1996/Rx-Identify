@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset="utf-8" />
+        <title>Medication Identification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    
+    <!-- <link rel="stylesheet" href="">
+    
+    <style>
+    </style>
+    <script src=""></script>
+    <script></script> -->
+</head>
+<body>
+    <p><h1 align="center">Rx Crispies</h1></p>
+    <img src='../static/images/search.jpg' alt ='Search Picture'  />
+    <div>
+        <ul> Welcome
+            <li>Please input information of 1 side of the drug. Front or back.Not Both!</li>
+            <li><strong>Disclaimer:Always ask your healthcare providers and pharmacists.</strong></li>
+            <li>Please input information of 1 side of the drug. Front or back</li>
+        </ul>
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <h2>Select a file to upload</h2>
+            <p>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            </p>
+            {% if filename or submit_text_form %}
+                <div>
+                    {% if filename %}
+                    <div>
+                        <span>
+                            <img src="{{ url_for('display_image', filename=filename) }}">
+                        
+                            <div> <i class="fas fa-arrow-alt-circle-left"></i> Your uploaded image</div>
+                            <div>Detected Text: {{detected_text}}</div>
+                            <div>Confidence: {{detected_confidence}}%</div>
+                        </span>
+                    </div>
+                    {% endif %}
+                    <!-- <div>{{filename}}</div>
+                    <div>{{ url_for('display_image', filename=filename) }}</div>
+                    <div>"{{url_for('testing')}}"</div>
+                    <a href="{{url_for('testing')}}">test</a> -->
+                    <!-- {% for element in test%}
+                        <div>{{element}}</div>
+                    {% endfor %} -->
+                    {% if (drug_data) is string %}
+                        <div>{{drug_data}}</div>
+                        <!-- {% for element in drug_data%}
+                            <div style='color:blue'>{{element['name']}} hello222</div>
+                            <div>{{'hello'}}</div>
+                
+                        {% endfor %} -->
+                    {% else %}
+                        <div>
+                            <div style='color:blue'>{{drug_data.0.name}}</div>
+                            <div style='color:green'>{{drug_data.0.manufacturer}}</div>
+                            <div style='color:orange'>{{drug_data.0.description}}</div>
+                            <div style='color:red'>{{drug_data.0.imprint}}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div>
+                <div>
+                    <form method="post" action="/" enctype="multipart/form-data">
+            
+                        <p>
+                            <input type="file" name="file" class="form-control" autocomplete="off" required>
+                        </p>
+                
+                        <p>
+                            <input type="submit" value="Submit" class="btn_submit">
+                        </p>
+                    </form>
+                </div>
+                <div>        
+                    <form method="post" action="/text_input" >
+                    
+                        <p>
+                            <input type="text" name="imprint" placeholder="Enter 1 Side Imprints" class="form-control" autocomplete="off" required>
+                        </p>
+                    
+                        <p>
+                            <input type="submit" value="Submit" class="btn_submit">
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
