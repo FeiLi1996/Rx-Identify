@@ -82,6 +82,7 @@ def testing():
 @app.route('/text_input',methods=['POST'])
 def handle_text_input():
     print(request.form['imprint'],'testing input')
+    print(request.form['shape'],'testing shape drop down  input')
     drug_data = image_identifier(request.form['imprint'])
     return render_template('index.html', drug_data= drug_data , submit_text_form = True)
 
