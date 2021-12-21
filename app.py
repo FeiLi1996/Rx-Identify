@@ -52,7 +52,7 @@ def upload_image():
         detected_information =detect_text_from_image(filename)
       
         #detected_information ['detected_text']
-        drug_data = image_identifier('apo042')
+        drug_data = image_identifier(detected_information['detected_text'],'0')
         print('herro',drug_data)
         return render_template(
             'index.html',
@@ -83,7 +83,7 @@ def testing():
 def handle_text_input():
     print(request.form['imprint'],'testing input')
     print(request.form['shape'],'testing shape drop down  input')
-    drug_data = image_identifier(request.form['imprint'])
+    drug_data = image_identifier(request.form['imprint'],request.form['shape'])
     return render_template('index.html', drug_data= drug_data , submit_text_form = True)
 
 
