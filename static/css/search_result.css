@@ -1,0 +1,30 @@
+#img_result_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.img_result_text{
+    color:red;
+}
+
+
+#drugs_result_overall{
+
+    /* border: groove; */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+   
+}
+
+.each_drug_result{
+    margin: 15px;
+    border: groove;
+    padding: 5px 5px 1px 5px;
+    text-align: left;
+    word-wrap: break-word;
+    width: auto;
+    height: auto;
+    max-width: 260px;
+  
+}

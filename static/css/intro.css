@@ -1,0 +1,33 @@
+#app_name{
+    color: #7c795d;
+    font-family: 'Trocchi', serif; 
+    font-size: 45px;
+    font-weight: bold;
+    line-height: 48px;
+    margin: 0; 
+    font-style: italic;
+}
+#logo_img{
+    height: auto;
+    width: auto;
+
+    max-width: 256px;
+    max-height: 384px;
+
+}
+
+#introduction{
+    display: flex;
+    flex: row;
+
+    justify-content: center;
+}
+#introduction > ul> h1{
+    text-decoration: underline;
+}
+
+
+li {
+    text-align: left;
+}
+
