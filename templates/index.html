@@ -6,12 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
-    <!-- <link rel="stylesheet" href="">
-    
-    <style>
-    </style>
-    <script src=""></script>
-    <script></script> -->
+
 </head>
 <body>
     <p><h1 id='app_name'>Rx Identify</h1></p>
@@ -100,7 +95,7 @@
                 <div id='img_result_wrapper'>
                     <div>
                         
-                        <img  src="{{ url_for('display_image', filename=filename) }}">
+                        <img  id='uploaded_img' src="{{ url_for('display_image', filename=filename) }}">
                     </div>
                     <div>
                         <div> <i class="fas fa-arrow-alt-circle-left"></i> Your uploaded image</div>
@@ -109,27 +104,9 @@
                     </div>
                 </div>
                 {% endif %}
-                <!-- <div>{{filename}}</div>
-                <div>{{ url_for('display_image', filename=filename) }}</div>
-                <div>"{{url_for('testing')}}"</div>
-                <a href="{{url_for('testing')}}">test</a> -->
-                <!-- {% for element in test%}
-                    <div>{{element}}</div>
-                {% endfor %} -->
                 {% if (drug_data) is string %}
                     <div class='img_result_text'>{{drug_data}}</div>
-                    <!-- {% for element in drug_data%}
-                        <div style='color:blue'>{{element['name']}} hello222</div>
-                        <div>{{'hello'}}</div>
-            
-                    {% endfor %} -->
                 {% else %}
-                    <!-- <div>
-                        <div style='color:blue'>{{drug_data.0.name}}</div>
-                        <div style='color:green'>{{drug_data.0.manufacturer}}</div>
-                        <div style='color:orange'>{{drug_data.0.description}}</div>
-                        <div style='color:red'>{{drug_data.0.imprint}}</div>
-                    </div> -->
                     <div id="drugs_result_overall">
                     {% for drug in drug_data%}
                         <div class="each_drug_result">

@@ -1,32 +1,22 @@
 from flask import Flask, render_template, flash,request,redirect, url_for, render_template
 import os
-import urllib.request
+from werkzeug.utils import secure_filename
+
 from text_detect import detect_text_from_image
 from  search_drug_info import image_identifier
-from werkzeug.utils import secure_filename
+from config import ApplicationConfig,allowed_file
+
+
 app = Flask(__name__)
 
-
-
+app.config.from_object(ApplicationConfig)
 
 UPLOAD_FOLDER = 'static/uploads/'
- 
-app.secret_key = "secret key"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
- 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-
-
-def tested():
-    return [1,2,3,4]
 
 
 @app.route('/')
@@ -46,18 +36,14 @@ def upload_image():
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #print('upload_image filename: ' + filename)
+
         flash('Image successfully uploaded and displayed below')
-        test = tested()
         detected_information =detect_text_from_image(filename)
-      
-        #detected_information ['detected_text']
         drug_data = image_identifier(detected_information['detected_text'],'0')
-        print('herro',drug_data)
+
         return render_template(
             'index.html',
             filename=filename,
-            test =test,
             drug_data= drug_data ,
             detected_text=detected_information['detected_text'],
             detected_confidence=detected_information ['confidence'] 
@@ -69,24 +55,12 @@ def upload_image():
 
 @app.route('/display/<filename>')
 def display_image(filename):
-    print('display_image filename: ' + filename)
-    print('hello')
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
-
-
-@app.route('/test')
-def testing():
-    return 'hello'
-
 
 @app.route('/text_input',methods=['POST'])
 def handle_text_input():
-    print(request.form['imprint'],'testing input')
-    print(request.form['shape'],'testing shape drop down  input')
     drug_data = image_identifier(request.form['imprint'],request.form['shape'])
     return render_template('index.html', drug_data= drug_data , submit_text_form = True)
-
-
 if __name__ =="__main__":
     app.run( debug =True)
 
