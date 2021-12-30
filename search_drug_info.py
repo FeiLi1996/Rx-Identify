@@ -15,7 +15,7 @@ def image_identifier(picture_text,shape_value):
             try:
                 description_and_imprint = drug.select('span')[-1].get_text()
             except IndexError:
-                #need this continue because everyother list is used as a divider instead of holding drug information. Will throw index out of boound error
+                #need this continue because everyother list is used as a divider instead of holding drug information. Will throw index out of bound error!
                 continue
             drug_name =drug.select('span')[0].get_text()
             for drug_in_collection in final_data:

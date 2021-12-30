@@ -2,6 +2,7 @@ from flask import Flask, render_template, flash,request,redirect, url_for, rende
 import os
 from werkzeug.utils import secure_filename
 
+
 from text_detect import detect_text_from_image
 from  search_drug_info import image_identifier
 from config import ApplicationConfig,allowed_file
