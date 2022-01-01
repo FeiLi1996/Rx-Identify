@@ -1,14 +1,10 @@
 # Rx-Identify
 
-This application allows you to look up drug pills by manually typing in the imprints/description or UPLOAD AN IMAGE of the pill.
+This application allows you to look up drug pills by manually typing in the imprints/shape or UPLOAD AN IMAGE of the pill.
 
 
 # Demonstration Link Below
-link...
-
-
-
-
+https://youtu.be/1KspftOrGGo
 
 
 
